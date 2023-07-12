@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="page-banner-area page-banner-height-2" data-background="{% static 'assets/img/banner/page-banner-4.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-x1-12">
+                <div class="page-banner-content text-center">
+                    <h4 class="breadcrumb-title">My Profile</h4>
+                    <div class="breadcrumb-two">
+                        <nav>
+                            <nav class="breadcrumb-trail breadcrumbs">
+                                <ul class="breadcrumb-menu">
+                                    <li class="breadcrumb-trail">
+                                        <a href="{% url 'home' %}"><span>Home</span></a>
+                                        </11>
+                                    <li class="trail-item"> <span>Profile</span>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="account-area mt-70 md-70">
+    <form action=" {% url 'profile_update' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <hr>
+            <div class="m">
+              {% if messages %}
+              <div class="alert alert-primary" role="alert" >
+                  {% for message in messages %}
+                  {{message}}
+                  {% endfor %}
+              </div>
+          
+              <ul class="message">
+                  <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                  {{message}}
+                  </li>
+              </ul>
+              {% endif %}
+            </div>    
+            <div class="col-1g-6">
+                <div class="basic-login mb-50">
+
+                    <div class="container">
+                        <div class="row justify-content-center">
+                          <div class="col-6">
+                            <div class="basic-login mb-50">
+                              <h5 class="text-center">YOUR-PROFILE</h5>
+                              <form>
+                                <div class="mb-3">
+                                  <label for="firstName" class="form-label">Your-Name:</label>
+                                  <input type="text" id="firstName" name="first_Name" class="form-control" value="{{user.first_name}}">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="firstName" class="form-label">Your-email:</label>
+                                  <input type="text" id="firstName" name="email" class="form-control" value="{{user.email}}">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="username" class="form-label">Username:</label>
+                                  <input type="text" id="username" name="username" class="form-control"  value="{{user.username}}">
+                                </div>
+                                <div class="text-center">
+                                 <a href="{% url 'logout' %}"  class="btn btn-primary">LOGOUT</a>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="row"></div>
+                    
+                    <div class="container">
+                        <div class="row justify-content-center">
+                          <div class="col-6">
+                            <div class="basic-login mb-50">
+                              <h5 class="text-center">PROFILE-UPDATE</h5>
+                              <form action=" {% url 'profile_update' %}" method="post">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                  <label for="firstName" class="form-label">New-Name:</label>
+                                  <input type="text" id="firstName" name="first_name" placeholder="enter your full name" class="form-control" >
+                                </div>
+                                <div class="mb-3">
+                                  <label for="firstName" class="form-label">New-email:</label>
+                                  <input type="text" id="firstName" name="email" class="form-control">
+                                </div>
+                              
+                                <div class="mb-3">
+                                  <label for="username" class="form-label">New-Username:</label>
+                                  <input type="text" id="username" name="username" class="form-control" >
+                                </div>
+                                 <div class="mb-3">
+                                  <label for="userame" class="form-label">New-password:</label>
+                                  <input type="text" id="userame" name="password" class="form-control" >
+                                </div>
+                                <div class="text-center">
+                                <input type="submit" value="UPDATE" class="btn btn-primary">
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="row"></div>
+            
+            
+            
+            {% endblock %}
+
+
+
+    

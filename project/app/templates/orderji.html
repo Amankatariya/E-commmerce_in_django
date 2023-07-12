@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body style="font-family: Arial, sans-serif; text-align: center; padding: 20px;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #f5f5f5; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+      <h1 style="color: #333;">No Products Available</h1>
+      <p style="color: #777; margin-bottom: 20px;">Oops! It seems there are no products available at the moment.</p>
+      <img src="{% static 'images/empty3.png' %}" alt="Empty Cart" style="width: 200px; margin-bottom: 20px;">
+    </div>
+  </body>
+  
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Thank You area start -->
+<div class="thank-you-area">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class=" col-md-8">
+            <div class="inner_complated">
+                <div class="img-cmpted"><img src="{% static 'images/tick.avif' %}" height="360"  width="360" alt="done"></div>
+                    <p class="dsc_cmpted"><b> Thank you for ordering in our store. You will receive a confirmation email
+                        shortly.</b></p>
+                    <div class="btn_cmpted">
+                        <a href="{% url 'shop' %}"><img src="{% static 'images/order.avif' %}" height="340px" width="340px" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="main_quickorder test-align-center">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- #=============================================================================================== -->
+
+{% endblock %}

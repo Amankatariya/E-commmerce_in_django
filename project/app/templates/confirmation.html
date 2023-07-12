@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main>
+    <!-- Add confirmation message and form here -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>Confirm Order Cancellation</h2>
+                <p>Are you sure you want to cancel the order?</p>
+                <form method="post" action="{% url 'cancel_order' order_id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Confirm</button>
+                    <a href="{% url 'myorder' %}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

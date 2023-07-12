@@ -1,0 +1,81 @@
+console.log('hello apps');
+            /* WhatsApp Chat Bubble code starts*/
+            try {
+              // const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+// const base_url = isMobile ? "whatsapp://send?phone=" : "https://wa.me/";
+const isCordova = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+const base_url = "https://wa.me/";
+
+function openWA() {
+    //alert(navigator.userAgent);
+    let browser = window?.cordova?.InAppBrowser || window;
+    browser.open(`${base_url}918218222526`, '_system');
+}
+
+var bubble = document.createElement('div');
+bubble.style.cssText = 'position: fixed; z-index: 1299; bottom: 72px; right: 12px;';
+bubble.innerHTML = `<div onclick="openWA()"> <div style="width: 60px; height: 60px; border-radius: 50%; background: #49c759; cursor: pointer; -webkit-box-shadow: 0 4px 20px rgb(152 152 152 / 20%); box-shadow: 0 4px 20px rgb(152 152 152 / 20%);display: flex; align-items: center; justify-content: center;"> <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_2032_888)"> <path d="M27.36 4.59867C24.32 1.66 20.32 0 16.06 0C3.83333 0 -3.844 13.2467 2.26133 23.784L0 32L8.44667 29.7973C12.1267 31.7853 15.1413 31.6093 16.068 31.7267C30.2453 31.7267 37.3027 14.5747 27.34 4.65067L27.36 4.59867Z" fill="white"></path> <path d="M16.0892 29.0016L16.0812 29.0003H16.0598C11.8172 29.0003 9.10651 26.991 8.83984 26.875L3.83984 28.175L5.17984 23.315L4.86118 22.815C3.54118 20.7136 2.83984 18.2936 2.83984 15.8016C2.83984 4.07762 17.1665 -1.78505 25.4572 6.50162C33.7278 14.7016 27.9212 29.0016 16.0892 29.0016Z" fill="#49C759"></path> <path d="M23.3429 19.0759L23.3309 19.1759C22.9295 18.9759 20.9749 18.0199 20.6109 17.8879C19.7935 17.5852 20.0242 17.8399 18.4549 19.6372C18.2215 19.8972 17.9895 19.9172 17.5935 19.7372C17.1935 19.5372 15.9095 19.1172 14.3895 17.7572C13.2055 16.6972 12.4109 15.3972 12.1762 14.9972C11.7855 14.3226 12.6029 14.2266 13.3469 12.8186C13.4802 12.5386 13.4122 12.3186 13.3135 12.1199C13.2135 11.9199 12.4175 9.9599 12.0842 9.17857C11.7642 8.3999 11.4349 8.49857 11.1882 8.49857C10.4202 8.4319 9.85885 8.44257 9.36418 8.95723C7.21218 11.3226 7.75485 13.7626 9.59618 16.3572C13.2149 21.0932 15.1429 21.9652 18.6682 23.1759C19.6202 23.4786 20.4882 23.4359 21.1749 23.3372C21.9402 23.2159 23.5309 22.3759 23.8629 21.4359C24.2029 20.4959 24.2029 19.7159 24.1029 19.5359C24.0042 19.3559 23.7429 19.2559 23.3429 19.0759V19.0759Z" fill="white"></path> </g> <defs> <clipPath id="clip0_2032_888"> <rect width="32" height="32" fill="white"></rect> </clipPath> </defs> </svg> </div> </div>`;
+document.body.appendChild(bubble); 
+            } 
+            catch (error) {}
+            /* WhatsApp Chat Bubble code ends*/
+          
+            /* Advanced Hellobar code starts*/
+            try {
+              /* const hellobarIntervalId = setInterval(() => {
+  if (window?.DukaanData?.DUKAAN_PAGE_KEY) {
+    const node = document.createElement('script');
+    // node.setAttribute("src", `http://localhost:9000/public/102206307/get-config`);
+    node.setAttribute(
+      'src',
+      `https://advance-hellobar.apps.mydukaan.io/public/102206307/get-config?page=${window?.DukaanData?.DUKAAN_PAGE_KEY}`
+    );
+    node.setAttribute('async', 'true');
+    node.setAttribute('data-nscript', 'afterInteractive');
+    document.body.appendChild(node);
+    clearInterval(hellobarIntervalId);
+  }
+}, 500); */
+
+const hellobarIntervalId2 = setInterval(() => {
+  if (window?.DukaanData?.DUKAAN_PAGE_KEY) {
+    const node = document.createElement('script');
+    const dukaanDetails = {
+      page: window?.DukaanData?.DUKAAN_PAGE_KEY,
+    };
+    if (window?.DukaanData?.DUKAAN_PAGE_KEY === 'product') {
+      dukaanDetails.productUuid = window?.DukaanData?.DUKAAN_PRODUCT?.uuid;
+      dukaanDetails.categories =
+        window.DukaanData?.DUKAAN_PRODUCT?.categories?.map(
+          (each) => each?.uuid
+        );
+    }
+    if (window?.DukaanData?.DUKAAN_PAGE_KEY === 'category') {
+      dukaanDetails.categories = (
+        window.DukaanData?.DUKAAN_CATEGORY?.parent_categories || []
+      )?.map((each) => each?.uuid);
+      dukaanDetails.categories.push(window.DukaanData?.DUKAAN_CATEGORY?.uuid);
+    }
+
+    /* node.setAttribute(
+      'src',
+      `http://localhost:9000/public/102206307/v2/get-config?dukaanDetails=${JSON.stringify(
+        dukaanDetails
+      )}`
+    ); */
+    node.setAttribute(
+     'src',
+      `https://advance-hellobar.apps.mydukaan.io/public/102206307/v2/get-config?dukaanDetails=${JSON.stringify(
+        dukaanDetails
+      )}`
+    ); 
+    node.setAttribute('async', 'true');
+    node.setAttribute('data-nscript', 'afterInteractive');
+    document.body.appendChild(node);
+    clearInterval(hellobarIntervalId2);
+  }
+}, 500); 
+            } 
+            catch (error) {}
+            /* Advanced Hellobar code ends*/
+          

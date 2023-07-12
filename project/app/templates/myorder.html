@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart_tag %}
+
+
+{% block content %}
+
+
+
+<main>
+    <form method="get"   enctype="multipart/form-data">
+        {% csrf_token %}
+    <!-- page-banner-area-start -->
+    <div class="page-banner-area page-banner-height-2" data-background="{% static 'assets/img/banner/page-banner-4.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="page-banner-content text-center">
+                        <h4 class="breadcrumb-title">YOUR ORDERS</h4>
+                        <div class="breadcrumb-two">
+                            <nav>
+                               <nav class="breadcrumb-trail breadcrumbs">
+                                  <ul class="breadcrumb-menu">
+                                     <li class="breadcrumb-trail">
+                                        <a href="{% url 'home' %}"><span>Home</span></a>
+                                     </li>
+                                     <li class="trail-item">
+                                        <span>YOUR ORDERS</span>
+                                     </li>
+                                  </ul>
+                               </nav> 
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- page-banner-area-end -->
+    <!-- cart-area-start -->
+    <section class="cart-area pb-120 pt-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#">
+                        <div class="table-content table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="product-thumbnail">Images</th>
+                                        <th class="cart-product-name">Product-Name</th>
+                                        <th class="product-price">Product-price</th>
+                                        <th class="product-quantity">Total</th>
+                                        <th class="product-quantity">Quantity</th>
+                                        <th class="product-quantity">CANCLE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td class="product-thumbnail"><a href="#"><img src="{{order.image}}" alt=""></a></td>
+                                        <td class="product-name"><a href="#">{{order.product}}</a></td>
+                                        <td class="product-price"><span class="amount">₹ {{order.price}}.00</span></td>
+                                        <!-- <td class="product-quantity">
+                                            <button class="tp-btn-h1" type="submit">Add To Cart</button>
+                                        </td> -->
+                                        <td class="product-subtotal"><span class="amount">₹ {{order.total}}.00</span></td>
+                                        <td class="product-subtotal"><span class="amount">[{{order.quantity}}]</span></td>
+                                        <td>
+                                            <form method="get" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <button style="color: black; background-color: rgba(151, 149, 32, 0.768); font-weight: 500; height: 40px; border: 2px solid rgb(36, 2, 170);">
+                                                    <a href="/cancel-order/{{order.id}}">Cancel Order</a>
+                                                </button>
+                                            </form>
+                                        </td>
+                                  
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+     <!-- cart-area-end -->
+
+
+{% endblock %}

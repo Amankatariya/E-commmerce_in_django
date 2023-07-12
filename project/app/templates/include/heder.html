@@ -1,0 +1,290 @@
+{% load static %}
+     <!-- header-start -->
+       <header class="header d-blue-bg">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-inner">
+                    <div class="row align-items-center">
+                        <div class="col-xl-6 col-lg-4">
+                            <div class="header-inner-start">
+                                <!-- <div class="header__currency border-right">
+                                    <div class="s-name">
+                                        <span>Language: </span>
+                                    </div>
+                                    <select>
+                                        <option>English</option>
+                                        <option>Deutsch</option>
+                                        <option>Français</option>
+                                        <option>Espanol</option>
+                                    </select>
+                                </div> -->
+                                <!-- <div class="header__lang border-right">
+                                    <div class="s-name">
+                                        <span>Currency: </span>
+                                    </div>
+                                    <select>
+                                        <option> USD</option>
+                                        <option>EUR</option>
+                                        <option>INR</option>
+                                        <option>BDT</option>
+                                        <option>BGD</option>
+                                    </select>
+                                </div> -->
+                                <div class="support d-none d-sm-block">
+                                    <!-- <p>Need Help? <a href="tel:+001123456789">+001 123 456 789</a></p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-5 d-none d-lg-block">
+                            <div class="header-inner-end text-md-end">
+                                <div class="ovic-menu-wrapper">
+                                    <!-- <ul>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="contact.html">Order Tracking</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="faq.html">FAQs</a></li>
+                                    </ul> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-mid">
+            <div class="container">
+                <div class="heade-mid-inner">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                            <div class="header__info">
+                                <div class="logo">
+                                    <a href="{% url 'home' %}"class="logo-image"><img style="height: 12rem; width: 12rem;" src="{%  static 'images/1/logo.png' %}" alt="logo"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-4 d-none d-lg-block">
+                            <div class="header__search">
+                                <form action="{% url 'shop' %}" method="GET">
+                                    <div class="header__search-box">
+                                        <input class="search-input" type="text" placeholder="I'm shopping for...">
+                                        <button class="button" type="submit"><i class="far fa-search"></i></button>
+                                    </div>
+                                    <div class="header__search-cat">
+                            <select name="category" id="category">
+                                <option>All Categories</option>
+                                            <option value="">All</option>
+                                        {% for category in cat %}
+                                            <option value="{{ category.id }}">{{ category.name }}</option>
+                                        {% endfor %}
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-5 col-md-8 col-sm-8">
+                            <div class="header-action">
+                                {% if user.is_authenticated %}
+                                <div class="block-userlink">
+                                    <a class="icon-link" href="{% url 'profile' %}">
+                                    <i class="flaticon-user"></i>
+                                    <span class="text">
+                                    <span class="sub">logout</span>
+                                    My Account </span>
+                                    </a>
+                                    <span style="color: red;"><span style="color: rgb(216, 230, 93);" >welcome</span>
+                                        {% if user.first_name == "" %}
+                                <span>style="color: red;">{{user.username}}</span> 
+                                        {% else %}
+                                        <h3 style="color: rgb(255, 247, 0);">{{user.first_name}}</h3>
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                {% else %}
+                                <div class="block-userlink">
+                                    <a class="icon-link" href="{% url 'login' %}">
+                                    <i class="flaticon-user"></i>
+                                    <span class="text">
+                                    <span class="sub">login</span>
+                                    My Account </span>
+                                    </a>
+                                    <p style="color: red;">Please login first</p>
+                         
+                                </div>
+
+                                {% endif %}
+                                <!-- <div class="block-wishlist action">
+                                    <a class="icon-link" href="wishlist.html">
+                                    <i class="flaticon-heart"></i>
+                                    <span class="count">0</span>
+                                    <span class="text">
+                                    <span class="sub">Favorite</span>
+                                    list </span>
+                                    </a>
+                                </div> -->
+                                <div class="block-cart action">
+                                    <a class="icon-link" href="{% url 'cart_detail' %}">
+                                        <i class="flaticon-shopping-bag"></i>
+                                        <span class="count">{{request.session.cart|length}}</span>
+                                        <span class="text">
+                                            <span class="sub">Your Cart:</span>
+                                        </span>
+                                    </a>
+                                    <div class="cart">
+                                        {% for key,value in request.session.cart.items %}
+                                        <div class="cart__mini">
+                                            <ul>
+                                                <li>
+                                                    <div class="cart__title">
+                                                        <h4>Your Cart</h4>
+                                                    <span>{{request.session.cart|length}} item in cart</span>
+                                                  </div>
+                                                </li>
+                                                <li>
+                                                  <div class="cart__item d-flex justify-content-between align-items-center">
+                                                    <div class="cart__inner d-flex">
+                                                      <div class="cart__thumb">
+                                                        <a href="{% url 'cart_detail' %}">
+                                                          <img src="{{value.image}}" alt="">
+                                                        </a>
+                                                      </div>
+                                                      <div class="cart__details">
+                                                        <h6><a href="{% url 'cart_detail' %}">{{value.name}}</a></h6>
+                                                        <div class="cart__price">
+                                                          <span>₹ {{value.price}}</span>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="cart__del">
+                                                        <a href="{% url 'item_clear' key %}"><i class="fal fa-times"></i></a>
+                                                    </div>
+                                                  </div>
+                                                </li>
+                                                <li>
+                                                  <div class="cart__sub d-flex justify-content-between align-items-center">
+                                                    <h6>Subtotal</h6>
+                                                    <span class="cart__sub-total">₹ {{value.price }}</span>
+                                                  </div>
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'cart_detail' %}" class="wc-cart mb-10">View cart</a>
+                                                    <a href="{% url 'checkout' %}" class="wc-checkout">Checkout</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header__bottom">
+            <div class="container">
+                <div class="row g-0 align-items-center">
+                    <div class="col-lg-3">                        
+                        <div class="cat__menu-wrapper side-border d-none d-lg-block">
+                            <div class="cat-toggle">
+                                <button type="button" class="cat-toggle-btn cat-toggle-btn-1"><i class="fal fa-bars"></i>All options</button>
+                                <div class="cat__menu">
+                                    <nav id="mobile-menu" style="display: block;">
+                                        <ul>
+                                            <li>
+                                                <a href="{% url 'home' %}" class="active">Home <i></i></a>
+                                            <li><a href="{% url 'about_us' %}">About Us</a></li>
+                                            <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                                            
+                                            {% if user.is_authenticated %}
+                                            <li><a href="{% url 'myorder' %}">My-orders<i></i></a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'myorder' %}">Orders</a></li>
+                                                </ul>
+                                            {% else %}
+                                            <li><a href="{% url 'myorderji' %}">My-orders<i></i></a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'myorderji' %}">Orders</a></li>
+                                                </ul>
+                                            {% endif %}
+                                            <li><a href="{% url 'shop' %}">All-Products</a></li>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-3">
+                      <div class="header__bottom-left d-flex d-xl-block align-items-center">
+                        <div class="side-menu d-lg-none mr-20">
+                          <button type="button" class="side-menu-btn offcanvas-toggle-btn"><i class="fas fa-bars"></i></button>
+                        </div>
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'home' %}" class="active">Home <i></i></a>
+                                    <li><a href="{% url 'about_us' %}">About Us</a></li>
+                                    <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                                    {% if user.is_authenticated %}
+                                    <li><a href="{% url 'myorder' %}">My-orders<i></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="{% url 'myorder' %}">Orders</a></li>
+                                        </ul>
+                                    {% else %}
+                                    <li><a href="{% url 'myorderji' %}">My-orders<i></i></a>
+                                        <ul class="submenu">
+                                            <li><a href="{% url 'myorderji' %}">Orders</a></li>
+                                        </ul>
+                                    {% endif %}
+                                    <li><a href="{% url 'shop' %}">All-Products</a></li>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-9">
+                        <div class="shopeing-text text-sm-end">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+
+    
+           <!-- offcanvas area start -->
+           <div class="offcanvas__area">
+            <div class="offcanvas__wrapper">
+            <div class="offcanvas__close">
+                <button class="offcanvas__close-btn" id="offcanvas__close-btn">
+                    <i class="fal fa-times"></i>
+                </button>
+            </div>
+            <div class="offcanvas__content">
+                <div class="offcanvas__logo mb-40">
+                    <a href="index.html">
+                    <img src="{% static 'images/1/bhati.jpg' %}" style="height: 90px; width: 90px;" alt="logo">
+                    </a>
+                </div>
+                <div class="offcanvas__search mb-25">
+                    <form action="{% url 'shop' %}">
+                        <input type="text" placeholder="What are you searching for?">
+                        <button type="submit" ><i class="far fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="mobile-menu fix"></div>
+                <div class="offcanvas__action">
+    
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- offcanvas area end -->      
+        <div class="body-overlay"></div>
+        <!-- offcanvas area end -->
+        
+    

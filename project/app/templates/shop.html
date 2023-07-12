@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load producttag %}
+{% block content %}
+
+
+
+
+<!-- shop-area-start -->
+<div class="shop-area mb-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-23 col-lg-24">
+                <div class="product-widget mb-30">
+                    <h5 class="pt-title">Product categories</h5>
+                    <div class="widget-category-list mt-20">
+                        <form action="{% url 'shop' %}" method="GET">
+                            <label for="category">Filter by Category:</label>
+                            <select name="category" id="category">
+                                <option value="">All</option>
+                                {% for category in cat %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit">Apply Filter</button>
+                        </form>
+                
+                    </div>
+                </div>
+
+
+
+
+          
+
+                     <div class="product-lists-top">
+                        <div class="product__filter-wrap">
+                            <div class="row align-items-center">
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                    <div class="product__filter d-sm-flex align-items-center">
+                                        <div class="product__col">
+                                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                  <button class="nav-link active" id="FourCol-tab" data-bs-toggle="tab" data-bs-target="#FourCol" type="button" role="tab" aria-controls="FourCol" aria-selected="true">
+                                                    <i class="fal fa-th"></i>
+                                                  </button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                  <button class="nav-link" id="FiveCol-tab" data-bs-toggle="tab" data-bs-target="#FiveCol" type="button" role="tab" aria-controls="FiveCol" aria-selected="false">
+                                                    <i class="fal fa-list"></i>
+                                                  </button>
+                                                </li>
+                                              </ul>
+                                        </div>
+                                        <div class="product__result pl-60">
+                                            <!-- <p>Showing 1-20 of 29 relults</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                    <div class="product__filter-right d-flex align-items-center justify-content-md-end">
+                                        <div class="product__sorting product__show-no">
+                                            <!-- <select>
+                                                <option>10</option>
+                                                <option>20</option>
+                                                <option>30</option>
+                                                <option>40</option>
+                                            </select> -->
+                                        </div>
+                                        <div class="product__sorting product__show-position ml-20">
+                                            <!-- <select>
+                                                <option>Latest</option>
+                                                <option>New</option>
+                                                <option>Up comeing</option>
+                                            </select> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    </div>
+                    <div class="tab-content" id="productGridTabContent">
+                        <div class="tab-pane fade show active" id="FourCol" role="tabpanel" aria-labelledby="FourCol-tab">
+                            <div class="tp-wrapper">
+                                <div class="row g-0">
+                                    {% for pros in pro %}
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                        <div class="product-container small">
+                                            <div class="product__item product__item-d">
+                                                <div class="product__thumb fix">
+                                                    <div class="product-image-small w-img">
+                                                        <a href="{% url 'product_detail' slug=pros.slug %}">
+                                                            <img src="/{{pros.image}}" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product__content-small">
+                                                    <h6><a href="product-details.html">{{pros.product_name}}</a></h6>
+                                                    <div class="rating mb-5">
+                                                        <ul>
+                                                            <div class="single-widget-rating" for="star-item-1">
+                                                                <i class="fal fa-star" style="background-color: yellow;"></i>
+                                                                <i class="fal fa-star" style="background-color: yellow;"></i>
+                                                                <i class="fal fa-star" style="background-color: yellow;"></i>
+                                                                <i class="fal fa-star" style="background-color: yellow;"></i>
+                                                                <i class="fal fa-star" style="background-color: yellow;"></i>
+                                                            </div>
+                                                        </ul>
+                                                        <span>(01 review)</span>
+                                                    </div>
+                                                    <div class="price mb-10">
+                                                        <span>₹ {% call_sellprice pros.price pros.discount %}</span>&nbsp;&nbsp;<del>{{pros.price}}</del>
+                                                    </div>
+                                                    <div class="product__add-cart-s text-center">
+                                                        <button type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                                                            <a href="{% url 'cart_add' pros.id %}">Add To Cart</a>
+                                                        </button>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- shop-area-end -->
+
+
+{% endblock %}

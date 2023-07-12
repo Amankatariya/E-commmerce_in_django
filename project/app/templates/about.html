@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+      <!-- page-banner-area-start -->
+      <div class="page-banner-area page-banner-height" data-background="{% static 'assets/img/banner/page-banner-1.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="page-banner-content text-center">
+                        <h3>About Us</h3>
+                        <p>A wonderful serenity has taken possession of my entire soul, like these <br> sweet mornings of spring which I enjoy with my whole heart.</p>
+                        <div class="page-bottom-btn mt-55">
+                            <a href="{% url 'home' %}" class="st-btn-4">Discover now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- page-banner-area-end -->
+
+    <!-- about-area-start -->
+    <div class="about-area pt-80 pb-80" data-background="assets/img/bg/about-bg.png">
+        <div class="container">
+            <div class="row align-items-center">
+               <div class="col-xl-6 col-lg-6">
+                <div class="about-content" style="text-align: center;">
+                    <span style="font-size: 24px; color: #333;">ABOUT OUR ONLINE STORE</span>
+                    <h4 style="font-size: 32px; color: #000; margin-top: 20px;">Hello,</h4>
+                    <h5 class="banner-t mb-30" style="font-size: 24px; color: #666; margin-top: 10px;">With 5+ Years Of Experience</h5>
+                    <p class="about-text" style="font-size: 16px; color: #666; line-height: 1.8; margin-bottom: 20px;">
+                        Over 5 years of experience, Kiyan Overseas has been a leading provider of high-quality furniture products.
+                    </p>
+                  
+                </div>
+                
+               </div>
+               <div class="col-xl-6 col-lg-6">
+                    <div class="about-image w-img">
+                        <img src="{% static 'assets/img/about/about-b.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about-area-end -->
+<!-- about-page-start -->
+<div style="padding-top: 70px; padding-bottom: 50px; background-color: #f9f9f9;">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <div style="text-align: center;">
+            <h3 style="font-size: 28px; color: #333; margin-bottom: 20px;">ABOUT US</h3>
+            <h2 style="font-size: 36px; color: #000; margin-bottom: 30px;">Kiyan Overseas - Furniture Brand Since 2019</h2>
+            <p style="font-size: 16px; color: #666; line-height: 1.8;">
+                Kiyan Overseas is a renowned furniture brand based in Uttar Pradesh, India. With a strong presence in the market since 2019, we are committed to delivering exceptional furniture solutions to customers across the country.
+            </p>
+            <p style="font-size: 16px; color: #666; line-height: 1.8;">
+                At Kiyan Overseas, we understand the significance of quality, style, and comfort when it comes to furniture. Our extensive range of products caters to diverse needs and preferences, ensuring that every customer finds the perfect piece for their space.
+            </p>
+            <p style="font-size: 16px; color: #666; line-height: 1.8;">
+                We take pride in our meticulous craftsmanship, employing skilled artisans who imbue each furniture item with elegance and durability. From classic designs to contemporary styles, our collection reflects a blend of creativity and functionality.
+            </p>
+            <p style="font-size: 16px; color: #666; line-height: 1.8;">
+                As a customer-centric brand, we prioritize the satisfaction of our clients. Our dedicated team is always ready to assist you in making informed decisions and providing personalized recommendations to enhance your living or working environment.
+            </p>
+            <p style="font-size: 16px; color: #666; line-height: 1.8;">
+                Whether you are furnishing your home, office, or any other space, Kiyan Overseas is your trusted partner for top-quality furniture. We strive to exceed expectations with our seamless customer service and commitment to delivering exceptional products.
+            </p>
+            <p style="font-size: 16px; color: #666; line-height: 1.8;">
+                Explore our extensive range of furniture and elevate your interiors with Kiyan Overseas.
+            </p>
+        </div>
+    </div>
+</div>
+<!-- about-page-end -->
+
+
+
+{% endblock %}
