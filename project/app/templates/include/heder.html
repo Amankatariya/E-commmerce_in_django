@@ -71,8 +71,7 @@
                                     </div>
                                     <div class="header__search-cat">
                             <select name="category" id="category">
-                                <option>All Categories</option>
-                                            <option value="">All</option>
+                                <option value="">All</option>     
                                         {% for category in cat %}
                                             <option value="{{ category.id }}">{{ category.name }}</option>
                                         {% endfor %}

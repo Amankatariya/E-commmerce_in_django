@@ -13,6 +13,7 @@ import re
 from .utils import *
 from django.contrib.auth.models import User
 from cart.cart import Cart
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -317,16 +318,6 @@ def checkout(request):
     tax=sum(i['tax'] for i in cart.values() if i )
     delivery_charge = sum(i.get('delivery_charge', 200) for i in cart.values() if i)
 
-    # orders = Order.objects.values('amount')
-
-    # for order in orders:
-    #     amount = order['amount']
-
-
-    # client = razorpay.Client(auth=("rzp_test_OtnyCkMugM2rxH", "qKEILi75jXLtrtYlZ3jfpJCI"))
-    # data = {"amount": 100 * 100, "currency": "INR", "receipt": "order_rcptid_11"}
-    # payment = client.order.create(data=data)
-
     context={
             'cp':packing_cost,
             't':tax,
@@ -378,17 +369,19 @@ def myorder(request):
     return render(request, 'myorder.html',context)
 
 
-
 def cancel_order(request, id):
     if request.method == 'POST':
-        order = OrderItem.objects.filter(id=id)
-        order.delete()
-        send_user(order)
-        messages.success(request, 'Order successfully cancelled.')
+        try:
+            order = OrderItem.objects.get(id=id)
+            order.delete()
+            send_email_now()    
+            messages.success(request, 'Order successfully cancelled.')
+        except OrderItem.DoesNotExist:
+            messages.error(request, '')  # Handle the case when the order doesn't exist
         return redirect('myorder')
     else:
-        return render(request, 'confirmation.html', {'order_id': id})
-    
+        messages.error(request, '')  # Handle the case when the order doesn't exist
+        return render(request, 'confirmation.html', {'order_id': id})    
 
 def myorderji(request):
     return render(request,'orderji.html')

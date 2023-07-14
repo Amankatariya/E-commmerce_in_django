@@ -38,6 +38,21 @@
     </div>
     <!-- page-banner-area-end -->
     <!-- cart-area-start -->
+    <div class="m">
+        {% if messages %}
+        <div class="alert alert-primary" role="alert" >
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+        </div>
+    
+        <ul class="message">
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{message}}
+            </li>
+        </ul>
+        {% endif %}
+      </div>    
     <section class="cart-area pb-120 pt-120">
         <div class="container">
             <div class="row">
@@ -70,7 +85,7 @@
                                             <form method="get" enctype="multipart/form-data">
                                                 {% csrf_token %}
                                                 <button style="color: black; background-color: rgba(151, 149, 32, 0.768); font-weight: 500; height: 40px; border: 2px solid rgb(36, 2, 170);">
-                                                    <a href="/cancel-order/{{order.id}}">Cancel Order</a>
+                                                    <a href="/cancel-order/{{order.id}}" >Cancel Order</a>
                                                 </button>
                                             </form>
                                         </td>

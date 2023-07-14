@@ -158,7 +158,7 @@ class Order(models.Model):
 
 
        def __str__(self) -> str:
-               return self.user.username 
+               return self.first_name
        
 class OrderItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
